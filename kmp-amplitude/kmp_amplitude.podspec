@@ -3,13 +3,13 @@ Pod::Spec.new do |spec|
     spec.version                  = '1.0'
     spec.homepage                 = 'https://onexeor.dev/'
     spec.source                   = { :http=> ''}
-    spec.authors                  = ''
+    spec.authors                  = 'Viktor Savchik'
     spec.license                  = ''
     spec.summary                  = 'Amplitude for KMP'
     spec.vendored_frameworks      = 'build/cocoapods/framework/KMPAmplitude.framework'
     spec.libraries                = 'c++'
-    spec.ios.deployment_target = '12.0'
-    spec.dependency 'Amplitude', '8.17.2'
+    spec.ios.deployment_target    = '12.0'
+    spec.dependency 'Amplitude', '8.21.0'
                 
     if !Dir.exist?('build/cocoapods/framework/KMPAmplitude.framework') || Dir.empty?('build/cocoapods/framework/KMPAmplitude.framework')
         raise "
@@ -21,6 +21,10 @@ Pod::Spec.new do |spec|
 
         Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
     end
+                
+    spec.xcconfig = {
+        'ENABLE_USER_SCRIPT_SANDBOXING' => 'NO',
+    }
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':kmp-amplitude',

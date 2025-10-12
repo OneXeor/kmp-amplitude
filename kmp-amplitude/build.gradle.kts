@@ -1,50 +1,43 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
+import com.android.build.api.dsl.androidLibrary
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+    androidLibrary {
+        namespace = "dev.onexeor.kmpAmplitude"
+        compileSdk = 36
+        minSdk = 21
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    )
     cocoapods {
         summary = "Amplitude for KMP"
         homepage = "https://onexeor.dev/"
+        authors = "Viktor Savchik"
         version = "1.0"
         ios.deploymentTarget = "12.0"
         framework {
             baseName = "KMPAmplitude"
-            isStatic = true
-            transitiveExport = true
-            embedBitcode(BitcodeEmbeddingMode.BITCODE)
         }
-        pod("Amplitude", "8.17.2")
+        pod("Amplitude") {
+            version = "8.21.0"
+            extraOpts += listOf("-compiler-option", "-fmodules-prune-after=345600")
+        }
     }
 
     sourceSets {
         commonMain.dependencies {
+
         }
         androidMain.dependencies {
             implementation(libs.amplitude)
         }
-    }
-}
-
-android {
-    namespace = "dev.onexeor.kmpAmplitude"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 21
     }
 }
