@@ -3,7 +3,7 @@
 A Kotlin Multiplatform (KMP) wrapper for Amplitude Analytics that provides a unified API for Android and iOS platforms.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.9.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/kotlin-2.2.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-lightgrey.svg)](https://kotlinlang.org/docs/multiplatform.html)
 
 ## Supported Platforms
@@ -169,10 +169,10 @@ amplitude.identify(identify)
 
 ## Requirements
 
-- Kotlin 1.9.20 or higher
+- Kotlin 2.2.20 or higher
 - Android: minSdk 21
 - iOS: deployment target 12.0
-- Gradle 8.2 or higher
+- Gradle 9.1.0 or higher
 
 ## Building from Source
 
