@@ -214,7 +214,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 📧 Email: support@onexeor.dev
 - 🐛 Issues: [GitHub Issues](https://github.com/OneXeor/kmp-amplitude/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/OneXeor/kmp-amplitude/discussions)
-- 
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for a list of changes in each version.
