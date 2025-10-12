@@ -16,11 +16,54 @@ A Kotlin Multiplatform (KMP) wrapper for Amplitude Analytics that provides a uni
 
 ## Installation
 
-Add the dependency to your `build.gradle.kts`:
+### Step 1: Create GitHub Personal Access Token
+
+KMP-Amplitude is published on GitHub Packages. You need a GitHub token to download it (one-time setup):
+
+1. Go to GitHub Settings → [Personal access tokens](https://github.com/settings/tokens)
+2. Generate new token (classic)
+3. Select scope: `read:packages`
+4. Copy the token
+
+### Step 2: Add Credentials
+
+Add to `~/.gradle/gradle.properties`:
+```properties
+gpr.user=YOUR_GITHUB_USERNAME
+gpr.key=YOUR_PERSONAL_ACCESS_TOKEN
+```
+### Step 3: Add Repository and Dependency
+
+`settings.gradle.kts`:
 
 ```kotlin
-dependencies {
-    implementation("dev.onexeor:kmp-amplitude:1.0.0")
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            name = "kmp-amplitude"
+            url = uri("https://maven.pkg.github.com/OneXeor/kmp-amplitude")
+            credentials {
+                username = providers.gradleProperty("gpr.user").orNull
+                password = providers.gradleProperty("gpr.key").orNull
+            }
+        }
+    }
+}
+```
+
+`build.gradle.kts`:
+
+```kotlin
+kotlin { 
+  // ...
+  sourceSets {
+    // ...  
+    commonMain.dependencies {
+      implementation("dev.onexeor:kmp-amplitude:1.0.0")
+    }
+  }
 }
 ```
 
